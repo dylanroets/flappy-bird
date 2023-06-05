@@ -36,5 +36,5 @@ const Div = styled.div`
 const GameBox = styled.div`
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
-  background-color: green;
+  background-color: blue;
 `;
