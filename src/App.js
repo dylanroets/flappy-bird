@@ -14,11 +14,12 @@ function App() {
 
   const [birdPosition, setBirdPosition] = useState(250);
   const [gameStarted, setGameStarted] = useState(false);
-  const [obstacleHeight, setObstacleHeight] = useState(100);
+  const [obstacleHeight, setObstacleHeight] = useState(200);
   const [obstacleLeft, setObstacleLeft] = useState(GAME_WIDTH - OBSTACLE_WIDTH);
   
   const bottomObstacleHeight = GAME_HEIGHT - OBSTACLE_GAP - obstacleHeight;
 
+  // Handling bird location and height/jumping
 
   useEffect(() => {
 
@@ -33,6 +34,21 @@ function App() {
       clearInterval(timeId);
     }
   }, [birdPosition, gameStarted]);
+
+  //This useEffect will handle pipes/obstacles scrolling left and randomizing in location
+
+  useEffect(() => {
+    let obstacleId;
+      if (gameStarted && obstacleLeft >= 0) {
+        obstacleId = setInterval(() => {
+          setObstacleLeft((obstacleLeft) => obstacleLeft - 1);
+        });
+
+        return () => {
+          clearInterval(obstacleId);
+        };
+      }
+  });
 
   const handleClick = () => {
     let newBirdPosition = birdPosition - JUMP_HEIGHT;
