@@ -8,6 +8,7 @@ const GAME_HEIGHT = 500;
 const GRAVITY = 6;
 const JUMP_HEIGHT = 80;
 const OBSTACLE_WIDTH = 40;
+const OBSTACLE_GAP = 200;
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [obstacleHeight, setObstacleHeight] = useState(100);
   const [obstacleLeft, setObstacleLeft] = useState(GAME_WIDTH - OBSTACLE_WIDTH);
+  
+  const bottomObstacleHeight = GAME_HEIGHT - OBSTACLE_GAP - obstacleHeight;
 
 
   useEffect(() => {
@@ -50,6 +53,13 @@ function App() {
           top={0}
           width={OBSTACLE_WIDTH}
           height={obstacleHeight}
+          left={obstacleLeft}
+        />
+
+<Obstacle 
+          top={GAME_HEIGHT - (obstacleHeight + bottomObstacleHeight)}
+          width={OBSTACLE_WIDTH}
+          height={bottomObstacleHeight}
           left={obstacleLeft}
         />
         <Bird size={BIRD_SIZE} top={birdPosition} />
