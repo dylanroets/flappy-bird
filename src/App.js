@@ -52,8 +52,16 @@ function App() {
         setObstacleLeft(GAME_WIDTH - OBSTACLE_WIDTH);
         setObstacleHeight(Math.floor(Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)))
       };
-      setScore((score) + 1);
-  });
+  }, [gameStarted, obstacleLeft]);
+
+  // This useEffect is our collision tracking useEffect to see if the bird has hit the bottom or top pbstacle
+
+  useEffect(() => {
+    const hasCollideWithTopObstacle = 
+      birdPosition >= 0 && birdPosition < obstacleHeight;
+    const hasCollideWithBottomObstacle = 
+      birdPosition <= 500 && birdPosition >= 500 - bottomObstacleHeight;
+  })
 
   // Handles clicking on the game box to get the bird to jump and start the game movement
 
