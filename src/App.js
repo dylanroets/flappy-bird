@@ -50,7 +50,9 @@ function App() {
         };
       } else {
         setObstacleLeft(GAME_WIDTH - OBSTACLE_WIDTH);
-        setObstacleHeight(Math.floor(Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)))
+        setObstacleHeight(Math.floor(Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)));
+        //Setting Score
+        if (gameStarted) {setScore((score) => score + 1)}
       };
   }, [gameStarted, obstacleLeft]);
 
@@ -61,7 +63,14 @@ function App() {
       birdPosition >= 0 && birdPosition < obstacleHeight;
     const hasCollideWithBottomObstacle = 
       birdPosition <= 500 && birdPosition >= 500 - bottomObstacleHeight;
-  })
+
+    if (obstacleLeft >= 0 &&
+        obstacleLeft <= OBSTACLE_WIDTH && 
+        (hasCollideWithTopObstacle || hasCollideWithBottomObstacle)) {
+      setGameStarted(false);
+      setScore(0);
+    }
+  }, [birdPosition, obstacleHeight, bottomObstacleHeight, obstacleLeft])
 
   // Handles clicking on the game box to get the bird to jump and start the game movement
 
@@ -95,6 +104,7 @@ function App() {
         />
         <Bird size={BIRD_SIZE} top={birdPosition} />
       </GameBox>
+      <span> {score} </span>
     </Div>
   );
 }
@@ -110,11 +120,16 @@ const Bird = styled.div`
   top: ${(props) => props.top}px;
   border-radius: 50%;
   `;
-
+//Span styling/ score styling here
 const Div = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  & span{
+    color: white;
+    font-size: 24px;
+    position: absolute;
+  }
 `;
 
 // overflow hidden allows for pipes to hide after they move left outside of the gamebox
