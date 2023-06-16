@@ -50,6 +50,8 @@ function App() {
       }
   });
 
+  // Handles clicking on the game box to get the bird to jump and start the game movement
+
   const handleClick = () => {
     let newBirdPosition = birdPosition - JUMP_HEIGHT;
     if (!gameStarted) {
