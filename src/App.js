@@ -16,6 +16,7 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [obstacleHeight, setObstacleHeight] = useState(200);
   const [obstacleLeft, setObstacleLeft] = useState(GAME_WIDTH - OBSTACLE_WIDTH);
+  const [score, setScore] = useState(0)
   
   const bottomObstacleHeight = GAME_HEIGHT - OBSTACLE_GAP - obstacleHeight;
 
@@ -39,15 +40,19 @@ function App() {
 
   useEffect(() => {
     let obstacleId;
-      if (gameStarted && obstacleLeft >= 0) {
+      if (gameStarted && obstacleLeft >= -OBSTACLE_WIDTH) {
         obstacleId = setInterval(() => {
-          setObstacleLeft((obstacleLeft) => obstacleLeft - 1);
-        });
+          setObstacleLeft((obstacleLeft) => obstacleLeft - 5);
+        }, 24);
 
         return () => {
           clearInterval(obstacleId);
         };
-      }
+      } else {
+        setObstacleLeft(GAME_WIDTH - OBSTACLE_WIDTH);
+        setObstacleHeight(Math.floor(Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)))
+      };
+      setScore((score) + 1);
   });
 
   // Handles clicking on the game box to get the bird to jump and start the game movement
@@ -104,10 +109,12 @@ const Div = styled.div`
   justify-content: center;
 `;
 
+// overflow hidden allows for pipes to hide after they move left outside of the gamebox
 const GameBox = styled.div`
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
   background-color: blue;
+  overflow: hidden;
 `;
 
 const Obstacle = styled.div`
