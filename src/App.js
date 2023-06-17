@@ -1,8 +1,11 @@
 import './App.css';
 import styled from "styled-components";
 import { useEffect, useState } from 'react';
+import logo from './flappy_bird.png';
 
 const BIRD_SIZE = 20;
+const BIRD_HEIGHT = 100
+const BIRD_WIDTH = 100
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
 const GRAVITY = 6;
@@ -102,9 +105,10 @@ function App() {
           height={bottomObstacleHeight}
           left={obstacleLeft}
         />
-        <Bird size={BIRD_SIZE} top={birdPosition} />
+        <Bird src={logo} height={BIRD_HEIGHT} width={BIRD_WIDTH} top={birdPosition} />
       </GameBox>
       <span> {score} </span>
+      <img src={logo} width={75} height={75}/>
     </Div>
   );
 }
@@ -114,12 +118,14 @@ export default App;
 
 const Bird = styled.div`
   position: absolute;
-  background-color: gold;
-  height: ${(props) => props.size}px;
-  width: ${(props) => props.size}px;
+  background-image: url(${logo});
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
   top: ${(props) => props.top}px;
-  border-radius: 50%;
+  object-fit: contain;
   `;
+  // height: ${(props) => props.size}px;
+  // width: ${(props) => props.size}px;
 //Span styling/ score styling here
 const Div = styled.div`
   display: flex;
