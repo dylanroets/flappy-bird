@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import logo from './flappy_bird.png';
 
 const BIRD_SIZE = 20;
-const BIRD_HEIGHT = 100
-const BIRD_WIDTH = 100
+const BIRD_HEIGHT = 40
+const BIRD_WIDTH = 40
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
-const GRAVITY = 6;
+const GRAVITY = 7;
 const JUMP_HEIGHT = 80;
 const OBSTACLE_WIDTH = 40;
 const OBSTACLE_GAP = 200;
@@ -108,7 +108,6 @@ function App() {
         <Bird src={logo} height={BIRD_HEIGHT} width={BIRD_WIDTH} top={birdPosition} />
       </GameBox>
       <span> {score} </span>
-      <img src={logo} width={75} height={75}/>
     </Div>
   );
 }
@@ -122,10 +121,9 @@ const Bird = styled.div`
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
   top: ${(props) => props.top}px;
-  object-fit: contain;
+  background-size: cover;
   `;
-  // height: ${(props) => props.size}px;
-  // width: ${(props) => props.size}px;
+
 //Span styling/ score styling here
 const Div = styled.div`
   display: flex;
