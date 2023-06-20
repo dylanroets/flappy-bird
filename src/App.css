@@ -19,7 +19,7 @@
   -webkit-background-clip: text;
   background-clip: text;
     -webkit-text-fill-color: transparent;  
-  animation: rainbow-animation 400s linear infinite;
+  animation: rainbow-animation 480s linear infinite;
 }
 
 @keyframes rainbow-animation {

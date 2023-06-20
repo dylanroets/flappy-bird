@@ -9,8 +9,8 @@ const BIRD_HEIGHT = 40
 const BIRD_WIDTH = 40
 const GAME_WIDTH = 500;
 const GAME_HEIGHT = 500;
-const GRAVITY = 8;
-const JUMP_HEIGHT = 80;
+const GRAVITY = 7;
+const JUMP_HEIGHT = 90;
 const OBSTACLE_WIDTH = 45;
 const OBSTACLE_GAP = 200;
 
@@ -49,7 +49,7 @@ function App() {
     let obstacleId;
       if (gameStarted && obstacleLeft >= -OBSTACLE_WIDTH) {
         obstacleId = setInterval(() => {
-          setObstacleLeft((obstacleLeft) => obstacleLeft - 9);
+          setObstacleLeft((obstacleLeft) => obstacleLeft - 7.5);
         }, 24);
 
         return () => {
