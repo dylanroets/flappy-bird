@@ -97,7 +97,8 @@ function App() {
   }
 
   return (
-    <Div className="App" onClick={handleClick}>
+    <>
+    <Div onClick={handleClick}>
       <GameBox height={GAME_HEIGHT} width={GAME_WIDTH}>
         <Obstacle 
           top={0}
@@ -105,8 +106,7 @@ function App() {
           height={obstacleHeight}
           left={obstacleLeft}
         />
-
-<Obstacle 
+        <Obstacle 
           top={GAME_HEIGHT - (obstacleHeight + bottomObstacleHeight)}
           width={OBSTACLE_WIDTH}
           height={bottomObstacleHeight}
@@ -114,8 +114,15 @@ function App() {
         />
         <Bird src={logo} height={BIRD_HEIGHT} width={BIRD_WIDTH} top={birdPosition} />
       </GameBox>
-      <span> Score: {score} | Best: {highScore} </span>
+      <span className="Scores"> Score: {score} | Best: {highScore} </span>
     </Div>
+    <Div className='App'>
+    <span className="Notes">Created by Dylan Roets
+    <br/>Connect with me on <a href="https://www.linkedin.com/in/dylan-roets-327848255/"> LinkedIn</a>
+    <br/>Check out my <a href="https://github.com/dylanroets"> Github</a>
+    <br/>Have an <span className='Rainbow'>awesome</span> day!</span>
+    </Div>
+    </>
   );
 }
 
@@ -133,19 +140,21 @@ const Bird = styled.div.attrs(props => ({
   position: absolute;
   background-image: url(${logo});
   background-size: cover;
-  `;
+`;
 
 //Span styling/ score styling here
 const Div = styled.div`
   display: flex;
   width: 100%;
+  background-color:#ece8ff;;
   justify-content: center;
-  & span{
+  & .Scores{
     color: white;
     font-size: 24px;
     position: absolute;
   }
 `;
+
 
 // overflow hidden allows for pipes to hide after they move left outside of the gamebox
 const GameBox = styled.div.attrs(props => ({
