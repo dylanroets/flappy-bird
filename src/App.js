@@ -62,7 +62,7 @@ function App() {
           setHighScore((score) => score + 1)
         }
       };
-  }, [gameStarted, obstacleLeft]);
+  }, [gameStarted, obstacleLeft, score, highScore]);
 
   // This useEffect is our collision tracking useEffect to see if the bird has hit the bottom or top pbstacle
 
