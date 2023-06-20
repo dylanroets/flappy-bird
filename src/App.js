@@ -119,13 +119,17 @@ function App() {
 
 export default App;
 
+//~STYLING~
 
-const Bird = styled.div`
+const Bird = styled.div.attrs(props => ({
+  style: {
+    height: props.height,
+    width: props.width,
+    top: props.top,
+  }
+}))`
   position: absolute;
   background-image: url(${logo});
-  height: ${(props) => props.height}px;
-  width: ${(props) => props.width}px;
-  top: ${(props) => props.top}px;
   background-size: cover;
   `;
 
@@ -142,18 +146,24 @@ const Div = styled.div`
 `;
 
 // overflow hidden allows for pipes to hide after they move left outside of the gamebox
-const GameBox = styled.div`
-  height: ${(props) => props.height}px;
-  width: ${(props) => props.width}px;
+const GameBox = styled.div.attrs(props => ({
+  style: {
+    height: props.height,
+    width: props.width,
+  }
+}))`
   background-image: url('https://user-images.githubusercontent.com/18351809/46888871-624a3900-ce7f-11e8-808e-99fd90c8a3f4.png');
   overflow: hidden;
 `;
-
-const Obstacle = styled.div`
+//Obstacles are the green pipes
+const Obstacle = styled.div.attrs(props => ({
+  style: {
+    top: props.top,
+    height: props.height,
+    width: props.width,
+    left: props.left,
+  },
+}))`
   position: relative;
-  top: ${(props) => props.top}px;
   background-color: green;
-  height: ${(props) => props.height}px;
-  width: ${(props) => props.width}px;
-  left: ${(props) => props.left}px;
 `;
