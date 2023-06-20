@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState } from 'react';
 import logo from './flappy_bird.png';
 
+
 const BIRD_SIZE = 20;
 const BIRD_HEIGHT = 40
 const BIRD_WIDTH = 40
